@@ -85,7 +85,12 @@ class Srun4k
         {
             echo date("Y-m-d H:i:s")." - Login succeed!!!".PHP_EOL;
         }
-        else    exit("Information is error!!!");
+        else
+        {
+            echo "Information is error!!!".PHP_EOL;
+            echo $response.PHP_EOL;
+            exit();
+        }
     }
 
     public static function logout()
