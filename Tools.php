@@ -20,7 +20,7 @@ function sig_handler($signo)
     }
 }
 
-function help_info($opt)
+function help_info(&$opt)
 {
 
     $info = <<<HELP
@@ -39,10 +39,16 @@ Usage:
 Options:
   -m                          Methods used in operation, Default is 'login',('logout')
   -t                          User login time interval
+  -f                          Configure file
   --help                      Help information
 
 HELP;
-
+    if (isset($opt['f']) && file_exists($opt['f']))
+    {
+        $json_str = file_get_contents($opt['f']);
+        $opt = array_merge($opt, json_decode($json_str, true));
+    }
+    
     if (isset($opt['m']) && $opt['m'] == 'logout')
     {
         Srun4k::logout();
@@ -55,4 +61,5 @@ HELP;
     {
         echo $info;
     }
+
 }

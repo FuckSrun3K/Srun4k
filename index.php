@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 declare(ticks = 1);
 
@@ -6,7 +7,7 @@ require_once 'Tools.php';
 
 pcntl_signal(SIGINT,  "sig_handler");
 
-$options = getopt("u:p:m:t:", ["help"]);
+$options = getopt("u:p:m:t:f:", ["help"]);
 
 help_info($options);
 $interval = $options['t']??300;
